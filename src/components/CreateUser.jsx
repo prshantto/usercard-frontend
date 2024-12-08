@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import axios from 'axios';
 import { useForm } from "react-hook-form"
 
@@ -21,12 +21,12 @@ function CreateUser({onclose}) {
     <div className="h-screen w-screen flex justify-center items-center fixed inset-0  bg-black bg-opacity-30 backdrop-blur-sm">
 
        
-        <div className='h-[80%] w-[60%] bg-white rounded-lg flex justify-around items-center flex-col'>
+        <div className='h-[50%] w-full m-3 sm:h-[75%] sm:w-[60%]  bg-white rounded-lg flex justify-around items-center flex-col'>
 
         <h3 className='text-xl font-bold m-0'>Add new User</h3>
 
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-    <form onSubmit={handleSubmit(onSubmit)} className='w-[90%] grid grid-cols-2 gap-2'>
+    <form onSubmit={handleSubmit(onSubmit)} className='w-[90%] grid grid-cols-1 sm:grid-cols-2 gap-2'>
       {/* register your input into the hook by invoking the "register" function */}
 
       <div className=''>
@@ -53,7 +53,7 @@ function CreateUser({onclose}) {
       <label htmlFor="company" className='block'>Company Name/Moto</label>
       <input placeholder="company name/moto" id='company' {...register("company")} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/>
       </div>
-      <div className='col-span-2'>
+      <div className= 'col-span-2'>
         {/* include validation with required or other standard HTML validation rules */}
       <label htmlFor="address" className='block'>Address</label>
       <input placeholder="street / suite / city / zipcode" id='address' {...register("address")} className='border border-gray-500 h-8 w-full rounded-lg text-md p-2 mt-1'/>

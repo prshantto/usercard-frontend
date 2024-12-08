@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import UpdateUser from "./UpdateUser";
+import axios from "axios";
 
 import {
   MailOutlined,
@@ -10,7 +11,7 @@ import {
   HeartFilled,
 } from "@ant-design/icons";
 
-function ShowUser({ name, email, phone, website }) {
+function UserCard ({ name, email, phone, website, id }) {
 
   const [showCard,setShowCard] = useState(false)
   
@@ -33,10 +34,16 @@ function ShowUser({ name, email, phone, website }) {
     }
   }
 
+  const deletehandler = async (e) => {
+    const clickedElementId = e.target.id || e.currentTarget.id;
+    await axios.get(`http://localhost:3001/delete-user?id=${clickedElementId}`)
+    console.log("Clicked element ID:", clickedElementId);
+  }
+  
 
   return (
     <>
-      <div className=" border border-gray-500 mt-12 ml-12 mr-12 lg:m-2,mt-12 md:m-2 md:mt-12">
+      <div  className=" border border-gray-500 mt-12 ml-12 mr-12 lg:m-2,mt-12 md:m-2 md:mt-12">
 
         <div className="h-50% bg-gray-100 text-center flex items-center justify-center">
           <img
@@ -61,12 +68,11 @@ function ShowUser({ name, email, phone, website }) {
         </div>
 
 
-
         <div className="h-10% bg-gray-200 flex items-center justify-around cursor-pointer border-t border-gray-400 text-gray-600">
           <HeartFilled className="hover:text-[#EB2F96] " onClick={likehandler}/>
           <EditOutlined onClick={()=>setShowCard(true)} className="hover:text-blue-600" />
           {showCard && <UpdateUser onclose={()=>setShowCard(false)}/>}
-          <DeleteFilled className="hover:text-blue-600" />
+          <button id={id} onClick={deletehandler}><DeleteFilled  className="hover:text-blue-600" /></button>
         </div>
 
       </div>
@@ -74,4 +80,4 @@ function ShowUser({ name, email, phone, website }) {
   );
 }
 
-export default ShowUser;
+export default UserCard;
