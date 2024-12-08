@@ -9,7 +9,7 @@ function App() {
   const [users, setUser] = useState([])
 
   useEffect(() => {
-    axios.get(import.meta.env.VITE_REACT_APP_FETCH_URL).then((response) => {
+    axios.get(import.meta.env.VITE_REACT_APP_BASE_URL).then((response) => {
       setUser(response.data);
     });
   }, []);

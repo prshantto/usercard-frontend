@@ -36,7 +36,7 @@ function UserCard ({ name, email, phone, website, id }) {
 
   const deletehandler = async (e) => {
     const clickedElementId = e.target.id || e.currentTarget.id;
-    await axios.get(`http://localhost:3001/delete-user?id=${clickedElementId}`)
+    await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}/delete-user?id=${clickedElementId}`)
     console.log("Clicked element ID:", clickedElementId);
   }
   
